@@ -1,3 +1,4 @@
+from collections import defaultdict
 
 class BoyerMooreMatcher:
 
@@ -8,6 +9,8 @@ class BoyerMooreMatcher:
         if not self.case_sensitive:
             pattern = pattern.lower()
             text = text.lower()
+            
+        last_occurrence_dict = self._compute_last_occurrence_dict(pattern)
 
         correct_shifts = []
         text_len = len(text)
@@ -26,3 +29,10 @@ class BoyerMooreMatcher:
             else:
                 s += ...
 
+    @staticmethod
+    def _compute_last_occurrence_dict(pattern: str):
+        last_occurrence_dict = defaultdict(0)
+        for idx, char in enumerate(pattern):
+            last_occurrence_dict[char] = idx
+            
+        return last_occurrence_dict
