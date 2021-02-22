@@ -11,6 +11,7 @@ class BoyerMooreMatcher:
             text = text.lower()
             
         last_occurrence_dict = self._compute_last_occurrence_dict(pattern)
+        good_suffix_dict = self._compute_good_suffix_dict(pattern)
 
         correct_shifts = []
         text_len = len(text)
@@ -54,4 +55,28 @@ class BoyerMooreMatcher:
             prefix_dict[q] = k
 
         return prefix_dict
+
+    def _compute_good_suffix_dict(self, pattern: str):
+        good_suffix_dict = {}
+        
+        pattern_len = len(pattern)
+        
+        pattern_prefix_dict = self._compute_prefix_dict(pattern)
+        reversed_pattern = pattern[::-1]
+        reversed_pattern_prefix_dict = self._compute_prefix_dict(reversed_pattern)
+        
+        for j in range(-1, pattern_len):
+            good_suffix_dict[j] = pattern_len - pattern_prefix_dict[pattern_len]
+            
+        for l in range(pattern_len):
+            j = pattern_len - reversed_pattern_prefix_dict[l]
+            if good_suffix_dict[j] > l - reversed_pattern_prefix_dict[l]:
+                good_suffix_dict[j] = l - reversed_pattern_prefix_dict[l]
+                
+        return good_suffix_dict
+            
+        
+        
+        
+
 
