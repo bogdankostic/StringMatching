@@ -36,3 +36,22 @@ class BoyerMooreMatcher:
             last_occurrence_dict[char] = idx
             
         return last_occurrence_dict
+
+    @staticmethod
+    def _compute_prefix_dict(pattern: str):
+        pattern_len = len(pattern)
+        prefix_dict = {}
+        prefix_dict[0] = 0
+        k = 0
+
+        for q in range(1, pattern_len):
+            while k > 0 and pattern[k] != pattern[q]:
+                k = prefix_dict[k]
+
+            if pattern[k] == pattern[q]:
+                k += 1
+
+            prefix_dict[q] = k
+
+        return prefix_dict
+
