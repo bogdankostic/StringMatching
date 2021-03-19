@@ -45,7 +45,7 @@ class BoyerMooreMatcher:
         good_shifts = []
 
         # Iterate over text
-        while current_shift < text_len - pattern_len:
+        while current_shift <= text_len - pattern_len:
             # Compare pattern and current text slice from right to left
             current_char_idx = pattern_len - 1
             while current_char_idx >= 0 and \
