@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
 import argparse
 import os
 
-from src.boyer_moore import BoyerMooreMatcher
-from src.naive import NaiveMatcher
+from string_matcher.boyer_moore import BoyerMooreMatcher
+from string_matcher.naive import NaiveMatcher
 
 
 DESCRIPTION = """Searches for one or more search patterns in a raw text
