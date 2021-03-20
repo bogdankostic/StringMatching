@@ -37,8 +37,8 @@ class NaiveMatcher:
         text_len = len(text)
         pattern_len = len(pattern)
 
-        # Iterate over each position in the text and check if an instance of the
-        # search pattern starts at the current index
+        # Iterate over each position in the text and check if an instance of
+        # the search pattern starts at the current index
         for shift in range(text_len - pattern_len + 1):
             candidate_match = text[shift:shift+pattern_len]
             if pattern == candidate_match:

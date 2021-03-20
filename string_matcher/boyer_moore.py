@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 class BoyerMooreMatcher:
     """
     Implements the Boyer-Moore string matching algorithm as it was
@@ -49,8 +50,8 @@ class BoyerMooreMatcher:
             # Compare pattern and current text slice from right to left
             current_char_idx = pattern_len - 1
             while current_char_idx >= 0 and \
-                pattern[current_char_idx] == \
-                text[current_shift + current_char_idx]:
+                    pattern[current_char_idx] == \
+                    text[current_shift + current_char_idx]:
                 # Current pattern char and current text char match
                 current_char_idx -= 1
 
@@ -72,7 +73,6 @@ class BoyerMooreMatcher:
 
         return good_shifts
 
-
     @staticmethod
     def _compute_last_occurrence_dict(pattern: str):
         """
@@ -90,7 +90,7 @@ class BoyerMooreMatcher:
         last_occurrence_dict = defaultdict(lambda: -1)
         for idx, char in enumerate(pattern):
             last_occurrence_dict[char] = idx
-            
+
         return last_occurrence_dict
 
     @staticmethod
@@ -128,11 +128,13 @@ class BoyerMooreMatcher:
         pattern_prefix_dict = self._compute_prefix_dict(pattern)
 
         reversed_pattern = pattern[::-1]
-        reversed_pattern_prefix_dict = self._compute_prefix_dict(reversed_pattern)
+        reversed_pattern_prefix_dict = self._compute_prefix_dict(
+            reversed_pattern)
 
         good_suffix_dict = {}
         for idx in range(-1, pattern_len):
-            good_suffix_dict[idx] = pattern_len - pattern_prefix_dict[pattern_len - 1]
+            good_suffix_dict[idx] = pattern_len - \
+                                    pattern_prefix_dict[pattern_len - 1]
 
         for idx in range(pattern_len):
             j = pattern_len - 1 - reversed_pattern_prefix_dict[idx]
@@ -141,9 +143,3 @@ class BoyerMooreMatcher:
                 good_suffix_dict[j] = new_value
 
         return good_suffix_dict
-            
-        
-        
-        
-
-

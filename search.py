@@ -7,10 +7,10 @@ from string_matcher.naive import NaiveMatcher
 
 
 DESCRIPTION = """Searches for one or more search patterns in a raw text
-input, text file or a directory consisting of .txt-files and outputs 
+input, text file or a directory consisting of .txt-files and outputs
 all positions the search patterns occur at.
-The default string matching algorithm that is used is the 
-Boyer-Moore algorithm. The Naïve string matching algorithm can be used 
+The default string matching algorithm that is used is the
+Boyer-Moore algorithm. The Naïve string matching algorithm can be used
 by setting the option '-n'.
 """
 NAIVE_HELP = "Use naive string matching algorithm instead of " \
@@ -22,8 +22,10 @@ TEXT_HELP = "Raw text, text file or directory containing .txt-files."
 
 parser = argparse.ArgumentParser(description=DESCRIPTION)
 parser.add_argument("-n", "--naive", action="store_true", help=NAIVE_HELP)
-parser.add_argument("-i", "--case-insensitive", action="store_true", help=CASE_HELP)
-parser.add_argument("search_patterns", metavar="SEARCH_PATTERN", nargs="+", help=PATTERNS_HELP)
+parser.add_argument("-i", "--case-insensitive", action="store_true",
+                    help=CASE_HELP)
+parser.add_argument("search_patterns", metavar="SEARCH_PATTERN", nargs="+",
+                    help=PATTERNS_HELP)
 parser.add_argument("text", metavar="TEXT_INPUT", help=TEXT_HELP)
 
 

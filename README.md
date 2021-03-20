@@ -33,7 +33,7 @@ Each match is printed on a new line with the following tab-seperated formats:
 #### Format for single text files and raw text input
 SEARCH_PATTERN \t POSITION_IN_TEXT/FILE
 
-#### Format for directories containing txt-files:
+#### Format for directories containing txt-files
 FILE_NAME \t SEARCH_PATTERN \t POSITION_IN_FILE
 
 ## Used String Matching Algorithms
