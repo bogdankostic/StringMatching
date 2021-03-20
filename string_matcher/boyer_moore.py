@@ -26,8 +26,8 @@ class BoyerMooreMatcher:
         :type pattern: str
         :param text: The text string to search in.
         :type text: str
-        :return: List with indices, where occurrences of the search
-            start in the text.
+        :return: List with indices where occurrences of the search
+            pattern start in the text.
         :rtype: List[int]
         """
         if not self.case_sensitive:
@@ -40,7 +40,7 @@ class BoyerMooreMatcher:
 
         # Preprocessing of the pattern to be able to make use of the
         # bad-character heuristic and good-suffix heuristic
-        last_occurence_dict = self._compute_last_occurrence_dict(pattern)
+        last_occurrence_dict = self._compute_last_occurrence_dict(pattern)
         good_suffix_dict = self._compute_good_suffix_dict(pattern)
         current_shift = 0
         good_shifts = []
@@ -68,7 +68,7 @@ class BoyerMooreMatcher:
                 # heuristic to get start of new text slice
                 current_shift += max(
                     good_suffix_dict[current_char_idx],
-                    current_char_idx - last_occurence_dict[bad_char]
+                    current_char_idx - last_occurrence_dict[bad_char]
                 )
 
         return good_shifts

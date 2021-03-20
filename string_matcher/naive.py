@@ -24,8 +24,8 @@ class NaiveMatcher:
         :type pattern: str
         :param text: The text string to search in.
         :type text: str
-        :return: List with indices, where occurrences of the search
-            start in the text.
+        :return: List with indices where occurrences of the search
+            pattern start in the text.
         :rtype: List[int]
         """
         if not self.case_sensitive:
