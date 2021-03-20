@@ -16,7 +16,7 @@ by setting the option '-n'.
 NAIVE_HELP = "Use naive string matching algorithm instead of " \
              "Boyer-Moore algorithm."
 CASE_HELP = "Perform case-insensitive search."
-PATTERNS_HELP = "List of search patterns to search for in the provided " \
+PATTERNS_HELP = "Search pattern to search for in the provided " \
                 "text inputs."
 TEXT_HELP = "Raw text, text file or directory containing .txt-files."
 
@@ -55,6 +55,7 @@ def main():
                 shifts = matcher.search(pattern, file_str)
                 for shift in shifts:
                     print(f"{pattern}\t{shift}")
+
     # text input is a raw text
     else:
         for pattern in args.search_patterns:
