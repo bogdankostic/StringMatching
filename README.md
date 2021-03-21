@@ -9,7 +9,7 @@ your terminal:
 ```bash
 git clone https://github.com/bogdankostic/StringMatching.git
 cd StringMatching
-sudo ./install.sh
+sudo -H ./install.sh
 ```
 
 ## Usage
@@ -35,6 +35,74 @@ SEARCH_PATTERN \t POSITION_IN_TEXT/FILE
 
 #### Format for directories containing txt-files
 FILE_NAME \t SEARCH_PATTERN \t POSITION_IN_FILE
+
+### Example usages
+#### Search in raw text input
+```bash
+search text "This tool allows you to search through texts."
+```
+Output:
+```
+text    39
+```
+
+#### Search case-insensitive
+```bash
+search -i covid "The COVID-19 pandemic, also known as the coronavirus pandemic, is an ongoing pandemic of coronavirus disease 2019 (COVID-19) caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)"
+```
+Output:
+```
+covid   4
+covid   115
+```
+
+#### Search through a single text file
+```bash
+search -i covid sample_data/astra_zeneca.txt
+```
+Output:
+```
+covid   77
+```
+
+#### Search through a directory of txt-files
+```bash
+search -i covid sample_data
+```
+Output:
+```
+biontech_pfizer.txt     covid   774
+biontech_pfizer.txt     covid   1432
+moderna.txt     covid   41
+moderna.txt     covid   66
+astra_zeneca.txt        covid   77
+johnson_johnson.txt     covid   154
+johnson_johnson.txt     covid   1079
+```
+
+#### Use multiple search patterns
+```bash
+search Vektor RNA sample_data
+```
+Output:
+```
+biontech_pfizer.txt     RNA     184
+biontech_pfizer.txt     RNA     435
+moderna.txt     RNA     1
+moderna.txt     RNA     262
+astra_zeneca.txt        Vektor  322
+astra_zeneca.txt        Vektor  330
+johnson_johnson.txt     Vektor  527
+```
+
+#### Use naïve string matching algorithm instead of Boyer-Moore algorithm
+```bash
+search -n string "This example uses the naive string matching algorithm."
+```
+Output:
+```
+string  28
+```
 
 ## Used String Matching Algorithms
 As default string matching algorithm, this tool uses the Boyer-Moore
