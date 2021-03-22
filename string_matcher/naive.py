@@ -1,5 +1,7 @@
+from string_matcher.base import BaseMatcher
 
-class NaiveMatcher:
+
+class NaiveMatcher(BaseMatcher):
     """
     Implements the naive string matching algorithm as it was outlined
     in Cormen et al.'s (1990) 'Introduction to Algorithms'.

@@ -1,7 +1,9 @@
 from collections import defaultdict
 
+from string_matcher.base import BaseMatcher
 
-class BoyerMooreMatcher:
+
+class BoyerMooreMatcher(BaseMatcher):
     """
     Implements the Boyer-Moore string matching algorithm as it was
     outlined in Cormen et al.'s (1990) 'Introduction to Algorithms'.
@@ -108,18 +110,23 @@ class BoyerMooreMatcher:
         :rtype: Dict[int, int]
         """
         pattern_len = len(pattern)
-        prefix_dict = {0: 0}
+
         good_prefix_len = 0
+        current_idx = 1
+        prefix_dict = {0: 0}
 
-        for current_idx in range(1, pattern_len):
-            while good_prefix_len > 0 and \
-                  pattern[good_prefix_len] != pattern[current_idx]:
-                good_prefix_len = prefix_dict[good_prefix_len]
-
+        while current_idx < pattern_len:
             if pattern[good_prefix_len] == pattern[current_idx]:
+                prefix_dict[current_idx] = good_prefix_len + 1
+                current_idx += 1
                 good_prefix_len += 1
 
-            prefix_dict[current_idx] = good_prefix_len
+            elif good_prefix_len == 0:
+                prefix_dict[current_idx] = 0
+                current_idx += 1
+
+            else:
+                good_prefix_len = prefix_dict[good_prefix_len - 1]
 
         return prefix_dict
 
