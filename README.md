@@ -3,6 +3,8 @@ This is a python-based commandline tool that allows you to search for
 one or more search patterns inside a raw text string, a text file or a
 directory containing several txt-files.
 
+This tool has been developed and tested using Python 3.7.
+
 ## Installation
 To install this commandline tool, execute the following commands in 
 your terminal:
